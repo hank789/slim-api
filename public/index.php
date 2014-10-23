@@ -1,27 +1,33 @@
 <?php
-use Ylc\EnvConfig\Environment;
+
+require __DIR__ . '/../vendor/autoload.php';
+
 use Ylc\AppBackendApi\ApiConfig;
-use Ylc\AppBackendApi\Resource;
-use Slim\Slim;
+use Ylc\AppBackendApi\Validation\Translator;
+use Ylc\AppBackendApi\Validation\Factory as ValidatorFactory;
+use Ylc\AppBackendApi\Controllers\Controller;
+use Ylc\AppBackendApi\JsonAPI\JsonApiMiddleware;
 
-require('../vendor/autoload.php');
+define('APP_START', microtime(true));
 
-$app = new Slim(ApiConfig::AppSlimConfig());
+define('ROOT_PATH', __DIR__ . '/../');
+define('APP_PATH', ROOT_PATH . '/app');
 
-if (Environment::current()->notProduction()) {
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-}
-date_default_timezone_set('Asia/Shanghai');
+$config = ApiConfig::AppSlimConfig();
 
-// Get
-$app->get('/user(/(:id)(/))', function($id = null) {
-    $resource = Resource::load('user');
-    if ($resource === null) {
-        Resource::response(Resource::STATUS_NOT_FOUND);
-    } else {
-        $resource->get($id);
-    }
-});
+//初始化验证类工厂对象
+$validator = new ValidatorFactory(new Translator);
+
+$app = new \Slim\Slim($config);
+
+$app->validator = $validator;
+$app->config    = $config;
+$app->add(new JsonApiMiddleware());
+
+Controller::$app = $app;
+
+$app->get('/', 'Ylc\AppBackendApi\Controllers\HomeController:index');
+$app->get('/test', 'Ylc\AppBackendApi\Controllers\HomeController:jsonpDemo');
+
 
 $app->run();
