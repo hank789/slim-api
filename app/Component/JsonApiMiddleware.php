@@ -1,4 +1,4 @@
-<?php namespace Ylc\AppBackendApi\JsonAPI;
+<?php namespace Ylc\AppBackendApi\Component;
 /**
  * jsonAPI - Slim extension to implement fast JSON API's
  *

@@ -6,7 +6,7 @@ use Ylc\AppBackendApi\ApiConfig;
 use Ylc\AppBackendApi\Validation\Translator;
 use Ylc\AppBackendApi\Validation\Factory as ValidatorFactory;
 use Ylc\AppBackendApi\Controllers\Controller;
-use Ylc\AppBackendApi\JsonAPI\JsonApiMiddleware;
+use Ylc\AppBackendApi\Component\JsonApiMiddleware;
 
 define('APP_START', microtime(true));
 
@@ -28,6 +28,6 @@ Controller::$app = $app;
 
 $app->get('/', 'Ylc\AppBackendApi\Controllers\HomeController:index');
 $app->get('/test', 'Ylc\AppBackendApi\Controllers\HomeController:jsonpDemo');
-
+$app->post('/dologin','Ylc\AppBackendApi\Controllers\UserController:doLogin');
 
 $app->run();

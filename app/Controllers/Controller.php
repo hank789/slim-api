@@ -119,7 +119,18 @@ abstract class Controller
      *
      * @return
      */
-    public function init(){}
+    public function init(){
+    	
+    }
+    
+    
+    public function decodeData(){
+        
+    }
+    
+    public function incodeData(){
+        
+    }
 
     /**
      * 生成json输出

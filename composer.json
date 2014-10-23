@@ -16,6 +16,9 @@
         {
             "type": "composer",
             "url": "http://lab.ylcdev.tk/satis/"
+        },
+        {
+            "packagist": false
         }
     ],
     "autoload": {
@@ -26,6 +29,7 @@
     "require": {
     	"slim/slim": "~2",
         "ylc/session": ">=1.0.0",
+        "ylc/app-backend-user": "dev-master",
         "bshaffer/oauth2-server-php": "v1.5"
     }
 }
