@@ -8,19 +8,6 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://lab.ylcdev.tk/satis-public/"
-        },
-        {
-            "type": "composer",
-            "url": "http://lab.ylcdev.tk/satis/"
-        },
-        {
-            "packagist": false
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Ylc\\AppBackendApi\\": "app"
@@ -28,8 +15,8 @@
     },
     "require": {
     	"slim/slim": "~2",
-        "ylc/session": ">=1.0.0",
         "ylc/app-backend-user": "dev-master",
+        "zircote/swagger-php": "0.9.6",
         "bshaffer/oauth2-server-php": "v1.5"
     }
 }
